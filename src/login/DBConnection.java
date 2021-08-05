@@ -14,8 +14,7 @@ public class DBConnection {
     	try{
     	Class.forName("com.mysql.jdbc.Driver");	
 		 connect = DriverManager.getConnection(MySQL_CONN, MySQL_USERNAME , MySQL_PASSWORD);
-		
-		}
+	}
 	catch(SQLException e) {
 		e.printStackTrace();
 	}
