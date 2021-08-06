@@ -12,7 +12,7 @@ public class AdminLogin {
 		String password = input.next();
 		int i = LoginCheck.loginCheck(username, password,"adminlogin");
 		if(i==1) {
-			System.out.println(true);
+			System.out.println("Login successfully");
 		}
 		else {
 			System.out.println("Invalid username or password");
