@@ -11,8 +11,8 @@ public class Welcome {
 		Connection conn = db.connect();
     	System.out.println("    WELCOME TO EVENT MANAGEMENT COMPANY   ");
     	System.out.println("Choose an option:" +
-    						"\nEnter [1] to login as admin" + 
-    						"\nEnter [2] to login or register as a customer" +
+    						"\nEnter [1] to Login as admin" + 
+    						"\nEnter [2] to Login or register as a customer" +
     						"\nEnter [0] to EXIT");
     	String choice = input.next();
     	
@@ -24,7 +24,7 @@ public class Welcome {
     		case "2" :
     			System.out.println("Choose an option:" +
 						"\nEnter [1] to login" + 
-						"\nEnter [2] to register" +
+						"\nEnter [2] to register if you are new " +
 						"\nEnter [0] to EXIT");
     			String choice2 = input.next();
     			switch(choice2) {
