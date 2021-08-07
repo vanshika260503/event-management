@@ -15,6 +15,14 @@ public class Catering extends Details implements Booking{
    }
    
    
+   
+	public Catering(String date, String place, int people) {
+	super(date, place, people);
+	// TODO Auto-generated constructor stub
+}
+
+
+
 	@Override
 	public void Book() {
 		// TODO Auto-generated method stub

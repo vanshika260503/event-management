@@ -5,11 +5,13 @@ import java.sql.SQLException;
 
 public abstract class Details extends Dashboard {
 	
-	public Details(String date, String place, int people) {
-		super(date, place, people);
-	}
+	
 	
 	public Details() {
+		// TODO Auto-generated constructor stub
+	} 
+
+	public Details(String date, String place, int people) {
 		// TODO Auto-generated constructor stub
 	}
 
