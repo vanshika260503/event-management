@@ -5,14 +5,14 @@ import java.sql.Connection;
 import java.util.Scanner;
 
 public class Welcome {
-	static Scanner input = new Scanner(System.in);
+	private static Scanner input = new Scanner(System.in);
 	private static  DBConnection db = new DBConnection();
 	public static void start() throws Exception {
 		Connection conn = db.connect();
     	System.out.println("    WELCOME TO EVENT MANAGEMENT COMPANY   ");
     	System.out.println("Choose an option:" +
-    						"\nEnter [1] to Login as admin" + 
-    						"\nEnter [2] to Login or register as a customer" +
+    						"\nEnter [1] to login as admin" + 
+    						"\nEnter [2] to login or register as a customer" +
     						"\nEnter [0] to EXIT");
     	String choice = input.next();
     	
@@ -24,7 +24,7 @@ public class Welcome {
     		case "2" :
     			System.out.println("Choose an option:" +
 						"\nEnter [1] to login" + 
-						"\nEnter [2] to register if you are new " +
+						"\nEnter [2] to register" +
 						"\nEnter [0] to EXIT");
     			String choice2 = input.next();
     			switch(choice2) {
