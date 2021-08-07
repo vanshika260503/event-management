@@ -8,19 +8,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-import login.*;
 import login.DBConnection;
 
-public class Venue extends Details implements BookingInterface {
+public class Venue extends Details implements Booking {
 	 Scanner input = new Scanner(System.in);
 	 private static  DBConnection db = new DBConnection();
 	 
-
-	public Venue(String date, String place, int people, String event) {
-		super(date, place, people, event);
-		// TODO Auto-generated constructor stub
-	}
-	Dashboard d = Input.getInput(); 
+    public Venue() {
+    	super();
+    }
+    
+	
+	Dashboard d=  customer.input.getInput();
 
 	
 	
@@ -29,6 +28,7 @@ public class Venue extends Details implements BookingInterface {
 	public void Book() {
 		// TODO Auto-generated method stub
 		System.out.println("Your venue is booked successfully.");
+		
 		
 	}
 
@@ -94,9 +94,9 @@ public class Venue extends Details implements BookingInterface {
 		// TODO Auto-generated method stub
 		Connection conn = db.connect();
 	    System.out.println("	*VENUE BOOKINGS*	");
-	    System.out.println("Enter the venue type");
-	    String venueType=input.next();
-		getOption(venueType,"venue");
+//	    System.out.println("Enter the venue type");
+//	     String venueType=input.next();
+//		getOption(venueType,"venue");
 		System.out.println("Choose an option for viewing above options or booking venues :" +
 				"\nEnter [1] to view details of an option  " + 
 				"\nEnter [2] to book the venue" +
@@ -135,8 +135,9 @@ public class Venue extends Details implements BookingInterface {
 	    	conn.close();
 	        System.exit(0);
 	}
-	 
-
+	
+	
+	
 
 	
 	

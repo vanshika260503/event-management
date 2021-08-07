@@ -5,13 +5,17 @@ public class Dashboard {
 	private String date;
 	private String place;
 	private int people;
-	protected String event;
 	
-	public Dashboard(String date, String place, int people, String event) {
+	
+	public Dashboard(String date, String place, int people) {
 		this.date = date ;
 		this.place = place;
 		this.people = people;
-		this.event = event;
+		
+	}
+
+	public Dashboard() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getDate() {
@@ -38,11 +42,4 @@ public class Dashboard {
 		this.people = people;
 	}
 
-	public String getEvent() {
-		return event;
-	}
-
-	public void setEvent(String event) {
-		this.event = event;
-	}
 }
