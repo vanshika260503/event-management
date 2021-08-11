@@ -123,7 +123,7 @@ public class Music extends Details implements Booking {
 		 System.out.print("Enter id :");
 		 int id = input.nextInt();
 		 getDetails(id,"venue");
-		 System.out.println("Choose an option for viewing above options or booking venues :" +
+		 System.out.println("Choose an option for viewing above options or booking music system :" +
 					"\nEnter [1] to view details of an option  " + 
 					"\nEnter [2] to book " +
 					"\nEnter [0] to EXIT");
