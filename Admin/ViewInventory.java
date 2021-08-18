@@ -11,6 +11,16 @@ import java.util.Scanner;
 public class ViewInventory extends AdminDashboard {
     Scanner  input = new Scanner(System.in);
     public  String tableName;
+    Connection connection;
+
+    {
+        try {
+            connection = DBConnection.connect();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     int choice1;
         public  void disp() throws SQLException, ClassNotFoundException {
         System.out.println("""
@@ -20,6 +30,7 @@ public class ViewInventory extends AdminDashboard {
                [2]Music
                [3]Decorations
                [4]Photography's
+               [5]Venues
                [Any other key to go back]""");
             choice1 = input.nextInt();
         switch (choice1){
@@ -35,32 +46,63 @@ public class ViewInventory extends AdminDashboard {
             case 4 : tableName= "photography";
                 view(tableName);
             break;
-            default:
+            case 5: tableName ="venue";
+               view2(tableName);
+             default:
                 Mainmenu();
         }
 
         }
-        private void view(String tableName) throws ClassNotFoundException, SQLException {
 
-                Connection connection = DBConnection.connect();
+    private void view2(String tableName) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM "+ tableName;
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        while(rs.next()){
+            int Id  = rs.getInt("id");
+            String Name = rs.getString("name");
+            String City = rs.getString("city");
+            String Type = rs.getString("type");
+            String phoneNumber = rs.getString("phoneNumber");
+            String Capacity = rs.getString("venue_capacity");
+            String Address = rs.getString("venue_address");
+            String cost = rs.getString("cost");
+
+            //Display values
+            System.out.println("ID: " + Id);
+            System.out.println("Name: " + Name);
+            System.out.println("City: " + City);
+            System.out.println("Type: " + Type);
+            System.out.println("phoneNumber: " + phoneNumber);
+            System.out.println("Max Capacity of venue: " + Capacity);
+            System.out.println("Address of venue : " + Address);
+            System.out.println("MAx number of persons : " + cost);
+            System.out.println("");
+        }
+       disp();
+    }
+
+    private void view(String tableName) throws ClassNotFoundException, SQLException {
+
+
                 String sql = "SELECT * FROM "+ tableName;
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
-                int Id  = rs.getInt("Id");
-                String Name = rs.getString("Name");
-                String City = rs.getString("City");
-                String Type = rs.getString("Type");
-                String Price = rs.getString("Price");
-                String Number = rs.getString("Number");
+                int Id  = rs.getInt("id");
+                String Name = rs.getString("name");
+                String City = rs.getString("city");
+                String Type = rs.getString("type");
+                String phoneNumber = rs.getString("phoneNumber");
+                String cost = rs.getString("cost");
 
                 //Display values
                 System.out.println("ID: " + Id);
                 System.out.println("Name: " + Name);
                 System.out.println("City: " + City);
                 System.out.println("Type: " + Type);
-                System.out.println("Price: " + Price);
-                System.out.println("MAx number of persons : " + Number);
+                System.out.println("phoneNumber: " + phoneNumber);
+                System.out.println("Cost of "+tableName+" : " + cost);
                 System.out.println("");
             }
             disp();

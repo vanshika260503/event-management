@@ -4,6 +4,7 @@ import login.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class VenueGateway {
@@ -12,10 +13,11 @@ public class VenueGateway {
     private String Id;
     private String Name;
     private String City;
-    private String Address;
-    private String Phoneno;
+    private String type;
+    private String phoneNumber;
     private String Capacity;
-    private String Price;
+    private String Address;
+    private String cost;
     private String New;
     public VenueGateway(int ch) throws SQLException, ClassNotFoundException {
         Choice = ch;
@@ -35,17 +37,19 @@ public class VenueGateway {
                 Name = input.nextLine();
                 System.out.print("Enter City : ");
                 City = input.nextLine();
-                System.out.print("Enter Address : ");
-                Address = input.nextLine();
-                System.out.print("Enter Phoneno : ");
-                Phoneno = input.nextLine();
+                System.out.print("Enter type : ");
+                type = input.nextLine();
+                System.out.print("Enter phoneNumber : ");
+                phoneNumber = input.nextLine();
+                System.out.print("Enter Address of venue : ");
+                Address =input.nextLine();
                 System.out.print("Enter Capacity : ");
                 Capacity = input.nextLine();
                 System.out.print("Enter Price : ");
-                Price = input.nextLine();
+                cost = input.nextLine();
                 break;
             case 2:
-                System.out.print("Delete Existing Venue only by Id");
+                System.out.println("Delete Existing Venue only by Id");
                 System.out.println("Enter ID : ");
                 Id = input.nextLine();
                 break;
@@ -54,8 +58,8 @@ public class VenueGateway {
                 Id = input.nextLine();
                 System.out.print("Enter Column to be altered : ");
                 Name = input.nextLine();
-                System.out.print("Enter new value of"+ Name+" : ");
-                String New =input.nextLine();
+                System.out.print("Enter new value of "+ Name+" : ");
+                New =input.nextLine();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + ch);
@@ -66,15 +70,16 @@ public class VenueGateway {
     protected void AddNew() throws ClassNotFoundException, SQLException {
         Connection connection = DBConnection.connect();
         getDetails(Choice);
-        String sql = "insert into venue(Id,Name,City,Address,Phoneno,Capacity,Price) values (?,?,?,?,?,?,?)";
+        String sql = "insert into venue(id,name,city,type,phoneNumber,venue_capacity,venue_address,cost) values (?,?,?,?,?,?,?,?)";
         PreparedStatement myStmt = connection.prepareStatement(sql);
         myStmt.setString(1, Id);
         myStmt.setString(2, Name);
         myStmt.setString(3, City);
-        myStmt.setString(4, Address);
-        myStmt.setString(5, Phoneno);
+        myStmt.setString(4, type);
+        myStmt.setString(5, phoneNumber);
         myStmt.setString(6, Capacity);
-        myStmt.setString(7, Capacity);
+        myStmt.setString(7, Address);
+        myStmt.setString(8, cost);
         myStmt.executeUpdate();
         System.out.println("Successfully registered");
         new UpdateInventory().VENUE();
@@ -93,22 +98,12 @@ public class VenueGateway {
     protected void Alter() throws ClassNotFoundException, SQLException {
         Connection connection = DBConnection.connect();
         getDetails(Choice);
-        String sql = "UPDATE venue set city = ? where Id = ?";
-        PreparedStatement myStmt = connection.prepareStatement(sql);
-//        myStmt.setString(1, Name);
-        myStmt.setString(1, New);
-        myStmt.setInt(2, Integer.parseInt(Id));
-        myStmt.executeUpdate();
-        System.out.println("Successfully Altered");
+        String sql = "update venue set "+Name+"= '"+New+"' where id="+Id;
+        Statement stmt = connection.createStatement();
+        stmt.executeUpdate(sql);
+        System.out.println("Database updated successfully ");
         new UpdateInventory().VENUE();
     }
-
-
-
-
-
-
-
 
 
 }

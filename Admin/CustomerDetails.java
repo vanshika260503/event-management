@@ -23,7 +23,7 @@ public class CustomerDetails extends AdminDashboard {
          switch (choice1){
              case 1 : Bookings();
              break;
-             case 2 : payementDetails();
+             case 2 : paymentDetails();
              break;
              case 3 : credentials();
              break;
@@ -52,8 +52,25 @@ public class CustomerDetails extends AdminDashboard {
         }
       display();
     }
-    private   void payementDetails(){
+    private   void paymentDetails() throws SQLException, ClassNotFoundException {
+        Connection connection = DBConnection.connect();
+        String sql = "SELECT * FROM booking";
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        while(rs.next()){
+            int Id  = rs.getInt("BookingID");
+            String PM = rs.getString("payment_method");
+            String PS = rs.getString("payment_status");
 
+            System.out.println("bookingID: " + Id);
+            System.out.println("Payment Method : " + PM);
+           if(PS!= null)
+            System.out.println("Payment status : \n"+PS);
+           else
+               System.out.println("Payment status : NOT PAYED\n");
+
+        }
+    display();
     }
    private void  Bookings() throws ClassNotFoundException, SQLException {
        Connection connection = DBConnection.connect();
@@ -62,21 +79,21 @@ public class CustomerDetails extends AdminDashboard {
        ResultSet rs = stmt.executeQuery(sql);
        while(rs.next()){
            int Id  = rs.getInt("BookingID");
-           int date  = rs.getInt("date");
            String UN = rs.getString("username");
+           int date  = rs.getInt("date");
            String Num = rs.getString("phone");
            String City = rs.getString("city");
            int people  = rs.getInt("people");
-           String venue = rs.getString("venue");
-           String catering = rs.getString("catering");
-           String decoration = rs.getString("catering");
-           String music = rs.getString("music");
-           String photography = rs.getString("photography");
+           int venue = rs.getInt("venue");
+           int catering = rs.getInt("catering");
+           int decoration = rs.getInt("catering");
+           int music = rs.getInt("music");
+           int photography = rs.getInt("photography");
            String Price = rs.getString("price");
 
            System.out.println("bookingID: " + Id);
-           System.out.println("Date of event : "+date);
            System.out.println("username : "+UN);
+           System.out.println("Date of event : "+date);
            System.out.println("phone number : "+Num);
            System.out.println(" City Booked : "+City);
            System.out.println("Number of people : "+people);
