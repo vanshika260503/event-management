@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DBConnection {
 	static Connection connect;
 	private static final String MySQL_USERNAME = "root";
-    private static final String MySQL_PASSWORD = "Ra@170503";
+    private static final String MySQL_PASSWORD = "*****"; // enter your MYSQL password
     private static final String MySQL_CONN = "jdbc:mysql://localhost:3306/event_managment";
     
     public static Connection connect() throws ClassNotFoundException  {
